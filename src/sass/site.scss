@@ -1,0 +1,17 @@
+$fonts: Arial, Helvetica, sans-serif;
+$font-size : 13px;
+$bg-color: #fafafa;
+
+html, body {
+    font-family: $fonts;
+    font-size: $font-size;
+}
+
+html {
+    background: $bg-color;
+}
+
+img.responsive {
+    max-width: 100%;
+    height:auto;
+}
