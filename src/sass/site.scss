@@ -1,17 +1,160 @@
+/*
+ *  DT173G - Moment 3 (Del 2)
+ *  Fredrik Blank
+ */
+
+/* Import */
+@import 'reset';
+
+/* 
+    Variabel (true/false) 
+    Sätt denna till true för dark mode
+*/
+$dark_theme : false;
+
+/* Font */
 $fonts: Arial, Helvetica, sans-serif;
-$font-size : 13px;
-$bg-color: #fafafa;
+$font-size: 13px;
+
+/* Färger */
+$bg-color: #eee;
+$light-color: #fafafa;
+$primary-color: #84867b;
+$secondary-color: #c19f81;
+
+@if $dark_theme == true {
+    $secondary-color: $primary-color;
+    $primary-color: #333;
+
+    /* Color function (Darken) */
+    $secondary-color : darken($secondary-color, 15%);
+}
+
+/* Mixins */
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+/* Extend/Inheritance */
+%no-margins {
+    margin: 0;
+    padding: 0;
+}
 
 html, body {
     font-family: $fonts;
     font-size: $font-size;
 }
 
+h1 {
+    font-size: 2em;
+    margin-bottom: .5em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1.4em;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+body {
+    @extend %no-margins;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 html {
     background: $bg-color;
 }
 
+#wrapper {
+    flex: 1;
+}
+
+footer {
+    background: $secondary-color;
+    padding: 2em;
+    color: $light-color;
+    text-align: center;
+}
+
+.container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    background: $light-color;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    position: relative;
+}
+
+#splash {
+    position:absolute;
+    @include transform(rotate(20deg));
+    background: $light-color;
+    right: 5%;
+    top: 10%;
+    border:1px solid $primary-color;
+}
+
+.content {
+    padding: 1em;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
 img.responsive {
     max-width: 100%;
-    height:auto;
+    height: auto;
+}
+
+.menu {
+    @extend %no-margins;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+
+    /* Nästlade element */
+    li {
+        flex: 1;
+        border: 1px solid $light-color;
+
+        a {
+            display: block;
+            padding: 1em;
+            background: $primary-color;
+            width: auto;
+            text-align: center;
+            text-decoration: none;
+            color: $light-color;
+        }
+
+        a:hover {
+            background: $light-color;
+            color: #333;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .menu {
+        flex-direction: column;
+    }
 }
